@@ -1,0 +1,16 @@
+{
+    "name": "gpx-point-reducer",
+    "version": "0.0.1",
+    "dependencies": {
+        "leaflet": "*",
+        "leaflet-editable": "*",
+        "gpx-parse": "*",
+        "systemjs": "v0.21.6"
+    },
+    "devDependencies": {
+        "express": "^4.13.4"
+    },
+    "engines": {
+        "node": "10.x"
+    }
+}

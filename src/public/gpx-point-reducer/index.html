@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GPX Point Reducer (Powered by Leaflet)</title>
+    <meta charset="utf-8" />
+
+    <!-- Initialize Styles-->
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Initialize leaflet -->
+    <script src="js/lib/leaflet-src.js"></script>
+
+</head>
+
+<body>
+
+    <!-- position the leaflet map-->
+    <div id="mapid"></div>
+
+    <!-- Initialize App -->
+    <!-- 
+        using https://github.com/systemjs/systemjs/blob/0.21.6 for require and module.exports
+        found in https://medium.com/@vishwa.efor/javascript-module-exports-require-import-export-define-cc04461f4d5e
+    -->
+    <script src="js/lib/system.src.js"></script>
+    <script>
+
+        var dummyTranspiler = function (load) { 
+            return load;
+        };
+
+        System.config({
+            map: {
+                leaflet: 'js/lib/leaflet.js'
+            },
+            packages: {
+                // meaning [baseURL]/local/package when no other rules are present
+                // path is normalized using map and paths configuration
+                'js': {
+                    defaultExtension: 'js'
+                },
+                'js/lib': {
+                    defaultExtension: 'js'
+                }
+            },
+            transpiler : "/gpx-point-reducer/js/straight-through-transpiler.js"
+        });
+
+        SystemJS.import("/gpx-point-reducer/js/index.js");
+    </script>
+    <!-- script  type="module" src="js/index.js"></script -->
+
+</body>
+
+</html>

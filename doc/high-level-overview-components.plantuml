@@ -1,0 +1,25 @@
+@startuml
+
+title High Level Overview - Components 
+
+skinparam style strictuml
+
+node "Client Side - Web Browser" {
+
+component "gpx-point-reducer" <<web-app>>as this
+component "leaflet-filelayer" <<leaflet-plugin>> as import
+component "gps-to-gpx" <<library>> as export
+component "leaflet" <<ui-library>> as show
+component "leaflet-editable" <<leaflet-plugin>> as edit
+
+}
+
+this -down-> import
+this -down-> show
+this -down-> edit
+this -down-> export
+
+edit <.right. show
+import <.left. show
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+
+title High Level Overview - Sequence
+
+skinparam style strictuml
+
+actor User
+
+control GpxParse
+control ToGpx
+control GpxLayer
+control SimplifiedGpxLayer
+control ControlPanel
+
+User --> ControlPanel : import()
+ControlPanel --> GpxParse: parse (file | url)
+GpxParse --> ControlPanel : GpxResult
+ControlPanel --> GpxLayer : show(GpxResult.track[0].points)
+ControlPanel --> SimplifiedGpxLayer : show(GpxResult.track[0].points)
+
+User --> SimplifiedGpxLayer : simplifiy(level)
+User --> SimplifiedGpxLayer : edit()
+
+User --> ControlPanel : switch tile provider(Google maps | OpenRoute Service | OpenStreet Maps)
+
+User --> ControlPanel : export()
+ControlPanel --> SimplifiedGpxLayer : get points
+ControlPanel --> ToGpx : createGPX(GpxResult with new points)
+ControlPanel --> User : download Gpx file
+
+
+note over GpxLayer
+Parse GPX:   
+Create GPX:  https://www.npmjs.com/package/gps-to-gpx
+Download:    https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+end note
+
+@enduml

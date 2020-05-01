@@ -1,0 +1,3 @@
+node_modules/
+src/public/gpx-point-reducer/js/lib/
+src/public/gpx-point-reducer/js/secrets.js
